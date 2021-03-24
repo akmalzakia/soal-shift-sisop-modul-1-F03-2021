@@ -399,22 +399,87 @@ kemudian gambar yang di unduh beserta lognya dipindahkan ke folder baru
 dengan nama tanggal unduhnya
 ### 3b (bash)
 ```bash
+#!/bin/bash
+bash "/home/zaki/Documents/Sisop Shift/Shift1/soal3/soal3a.sh"
 datee="%m-%d-%Y"
 file=$(date +"$datee")
 mkdir $file
 
-mv *.jpg $file
+
+mv Koleksi_* $file
 mv Foto.log $file
 ```
+Script dari 3a akan dijalankan dan hasil download langsung dipindahkan menuju suatu folder baru. Oleh karena itu diperlukan untuk menjalankan script soal3a  dengan bash sebelum memindahkan file. Setelah itu buat folder menggunakan `mkdir {nama file}` dengan nama folder berupa output dari `date`. Setelah folder terbentuk, mulai pindahkan file downloadan dengan nama yang mendandung Koleksi_ didepannya dan lognya menuju folder yang barusan dibuat.
+
+
 ### 3b crontab
 ```bash
-0 20 1, 8, 15, 22, 29 * * bash soal3b.sh
-0 20 2, 6, 10, 14, 18, 26, 30 * * bash soal3b.sh
+0 20 1-31/7,2-31/4 * * bash "/home/zaki/Documents/Sisop Shift/Shift1/soal3/soal3b.sh"
 ```
+script dijalankan ketika menit ke 0, pada jam 20 ( 8 malam ), mulai dari tanggal 1 hingga tanggal 31 setiap 7 hari dan mulai dari tanggal 2 hinggal tanggal 31 setiap 4 hari, pada setiap bulan, dan pada setiap tahun
 
 ### 3c
 Mengunduh gambar kucing dan kelinci secara bergantian dan membuatkannya
-folder dengan nama awalan kucing dan kelinci
+folder dengan nama awalan kucing dan kelinci. Dapat diselesaikan dengan menggabungkan script 3a dan 3b dan menduplikat dan memodifikasi lagi agar bisa mendownload gambar kelinci.
+```bash
+kelinci(){
+    size=23
+    for(( i=1 ; i<=size; i++ ))
+    do
+    	wget -O "Koleksi_$i" -a "Foto.log" https://loremflickr.com/320/240/bunny
+    	for (( j=1 ; j<i ; j++ ))
+    	do
+    		if [[ j -lt 10 ]]
+    		then
+    			if cmp -s "Koleksi_$i" "Koleksi_0$j"
+    			then
+    				rm "Koleksi_$i"
+    				(( i-- ))
+    				(( size-- ))
+    			fi
+    		else
+    			if cmp -s "Koleksi_$i" "Koleksi_$j"
+    			then
+    				rm "Koleksi_$i"
+    				(( i-- ))
+    				(( size-- ))
+    				break
+    			fi
+    		fi
+    	done
+
+    	if [[ i -lt 10 ]]
+    	then
+    		mv "Koleksi_$i" "Koleksi_0$i"
+    	fi
+    done
+
+
+
+    datee="%m-%d-%Y"
+    file=$(date +"$datee")
+    mkdir "Kelinci_$file"
+
+
+    mv Koleksi_* "Kelinci_$file"
+    mv Foto.log "Kelinci_$file"
+}
+```
+Command untuk mendownload kelinci dan kucing dimasukkan kedalam fungsi agar lebih mudah dibaca dan dipanggil di command selanjutnya.
+
+Untuk mengatur proses download agar bisa didownload secara bergantian maka diperlukan command yang bisa mengecek jumlah folder kelinci atau kucing. Untuk pendownloadan pertama, script akan mendownload kelinci terlebih dahulu. Pendownloadan kedua akan mendownload kucing, dst. Setelah diamati, terbentuklah pola apabila jumlah folder kelinci dan folder kucing sama, maka yang didonwload adalah gambar kelinci, dan mendownload gambar kucing apabila jumlah folder tidak sama
+
+```bash
+kucingcount=$(ls | grep "Kucing_" | wc -l)
+kelincicount=$(ls | grep "Kelinci_" | wc -l)
+
+if [[ $kucingcount -eq $kelincicount ]]
+then
+    kelinci
+else [[ $kucingcount -ne $kelincicount ]]
+    kucing
+fi
+```
 
 ### 3d
 Membuat zip untuk memindahkan seluruh folder dan menguncinya 
