@@ -392,6 +392,8 @@ if [[ i -lt 10 ]]
 untuk mengganti nama file dari `koleksi_$i` menjadi `Koleksi_0$i` di tambahkan dengan 0 didalamnya karena satuan yang dimulai dari `i -lt 10`.
 untuk mengganti nama file sendiri menggunakan command `mv`.
 
+- - - -
+
 ### 3b 
 Menjalankan script sehari sekali pada jam 8 malam dengan syarat
 tanggal 1 tujuh hari sekali dan tanggal 2 empat hari sekali
@@ -411,12 +413,15 @@ mv Foto.log $file
 ```
 Script dari 3a akan dijalankan dan hasil download langsung dipindahkan menuju suatu folder baru. Oleh karena itu diperlukan untuk menjalankan script soal3a  dengan bash sebelum memindahkan file. Setelah itu buat folder menggunakan `mkdir {nama file}` dengan nama folder berupa output dari `date`. Setelah folder terbentuk, mulai pindahkan file downloadan dengan nama yang mendandung Koleksi_ didepannya dan lognya menuju folder yang barusan dibuat.
 
+- - - -
 
 ### 3b crontab
 ```bash
 0 20 1-31/7,2-31/4 * * bash "/home/zaki/Documents/Sisop Shift/Shift1/soal3/soal3b.sh"
 ```
 script dijalankan ketika menit ke 0, pada jam 20 ( 8 malam ), mulai dari tanggal 1 hingga tanggal 31 setiap 7 hari dan mulai dari tanggal 2 hinggal tanggal 31 setiap 4 hari, pada setiap bulan.
+
+- - - -
 
 ### 3c
 Mengunduh gambar kucing dan kelinci secara bergantian dan membuatkannya
@@ -480,6 +485,7 @@ else [[ $kucingcount -ne $kelincicount ]]
     kucing
 fi
 ```
+- - - -
 
 ### 3d
 Membuat zip untuk memindahkan seluruh folder dan menguncinya 
@@ -503,6 +509,7 @@ zip -P akan mengunci zip menggunakan variabel `pass`
 zip -m akan melakukan zip dengan memindahkan file sehingga setelah zip selesai dilakukan, folder atau file yang di zip hilang
 zip -r akan melakukan zip secara rekursi sehingga file yang berada dalam folder juga ikut di zip
 
+- - - -
 
 ### 3e
 Membuat koleksi ter-zip di jam kuliahnya saja selain itu ter-unzip
@@ -514,3 +521,5 @@ dan tidak ada file zip sama sekali
 Zip akan terbuka dengan menjalankan script soal 3d dan dijalankan pada menit 0, pada jam 7 pagi, pada hari pertama hingga hari kelima dalam minggu (senin - jumat), pada setiap bulan
 
 Cron kedua akan melakukan unzip pada file zip Koleksi.zip, namun sebelum itu cron perlu diarahkan menuju folder yang mengadung file Koleksi.zip menggunakan `cd {PATH}`, setelah di unzip, file akan dihapus menggunakan `rm`. Command ini akan dijalankan pada menit 0, jam 18 (6 malam), pada hari pertama hingga hari kelima dalam minggu (senin-jumat), pada setiap bulan
+
+- - - -
