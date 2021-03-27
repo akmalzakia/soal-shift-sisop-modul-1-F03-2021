@@ -235,16 +235,6 @@ BEGIN{}
 	{if(NR!=1)
 		arr[$13]+= $21
 	}
-#	{if(NR!=1)
-#	printf "%f %f\n",$21,min
-#		{if($21 < min)
-#			{
-#				printf "compared\n"
-#				min=$21
-#				regionmin=$13
-#			}
-#		}
-#	}
 }
 END{
 	a=0;
@@ -271,7 +261,8 @@ END{
 ' "$input" >> hasil.txt
 ```
 - Proses akan dilakukan ketika Baris != 1
-- 
+- Menyimpan total profit dari setiap region dengan menggunakan array yang memiliki index region dan valuenya adalah jumlah dari profit
+- Setelah semua data selesai di proses, dilanjutkan dengan pencarian total profit yang paling sedikit. Pertama diinisialisasi bahwa yang terkecil adalah region paling awal. Lalu ketika dilakukan pengecekan untuk region selanjutnya, profitnya lebih kecil dari yang sekarang maka profit terkecilnya beserta regionnya akan diganti. Proses tersebut dilakukan sampai semua region telah dicek.
 
 - - - -
 
