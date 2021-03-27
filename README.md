@@ -416,7 +416,7 @@ Script dari 3a akan dijalankan dan hasil download langsung dipindahkan menuju su
 ```bash
 0 20 1-31/7,2-31/4 * * bash "/home/zaki/Documents/Sisop Shift/Shift1/soal3/soal3b.sh"
 ```
-script dijalankan ketika menit ke 0, pada jam 20 ( 8 malam ), mulai dari tanggal 1 hingga tanggal 31 setiap 7 hari dan mulai dari tanggal 2 hinggal tanggal 31 setiap 4 hari, pada setiap bulan, dan pada setiap tahun
+script dijalankan ketika menit ke 0, pada jam 20 ( 8 malam ), mulai dari tanggal 1 hingga tanggal 31 setiap 7 hari dan mulai dari tanggal 2 hinggal tanggal 31 setiap 4 hari, pada setiap bulan.
 
 ### 3c
 Mengunduh gambar kucing dan kelinci secara bergantian dan membuatkannya
@@ -465,7 +465,7 @@ kelinci(){
     mv Foto.log "Kelinci_$file"
 }
 ```
-Command untuk mendownload kelinci dan kucing dimasukkan kedalam fungsi agar lebih mudah dibaca dan dipanggil di command selanjutnya.
+Command untuk mendownload kelinci dan kucing dimasukkan kedalam fungsi yaitu fungsi `kucing()` dan fungsi `kelinci()` agar lebih mudah dibaca dan dipanggil di command selanjutnya.
 
 Untuk mengatur proses download agar bisa didownload secara bergantian maka diperlukan command yang bisa mengecek jumlah folder kelinci atau kucing. Untuk pendownloadan pertama, script akan mendownload kelinci terlebih dahulu. Pendownloadan kedua akan mendownload kucing, dst. Setelah diamati, terbentuklah pola apabila jumlah folder kelinci dan folder kucing sama, maka yang didonwload adalah gambar kelinci, dan mendownload gambar kucing apabila jumlah folder tidak sama
 
@@ -488,19 +488,29 @@ menggunakan password
 kolzip="%m%d%Y"
 pass=$(date +"$kolzip")
 
-zip -P $pass -r Koleksi.zip */
+filess=$(ls | grep -E "Kelinci_|Kucing_")
+zip -P $pass -mr Koleksi.zip $filess
 ```
+Untuk mencari folder yang akan dizip, bisa dengan mengambil menggunakan regex dari list file `ls`.
+```bash
+grep -E "Kelinci_|Kucing_"
+```
+Kode diatas akan memfilter list folder yang memiliki nama Kelinci atau Kucing. Hasil filter akan dimasukkan ke variabel `filess`. Setelah itu zip folder dengan password yang telah disimpan di variabel `pass`.
+```bash
+zip -P $pass -mr Koleksi.zip $filess
+```
+zip -P akan mengunci zip menggunakan variabel `pass`
+zip -m akan melakukan zip dengan memindahkan file sehingga setelah zip selesai dilakukan, folder atau file yang di zip hilang
+zip -r akan melakukan zip secara rekursi sehingga file yang berada dalam folder juga ikut di zip
+
 
 ### 3e
 Membuat koleksi ter-zip di jam kuliahnya saja selain itu ter-unzip
 dan tidak ada file zip sama sekali
 ```bash
-#zip
 0 7 * * 1-5 bash soal3d.sh
-
-#unzip
-kolunzip="%m%d%Y"
-password=$(date +"$kolunzip")
-0 18 * * 1-5 unzip -P $password Koleksi.zip && rm Koleksi.zip
+0 18 * * 1-5 cd /home/zaki/Documents/Sisop Shift/Shift1/soal3/Koleksi.zip && unzip -P $( date +"\%m\%d\%Y" ) "Koleksi.zip" && rm "Koleksi.zip"
 ```
+Zip akan terbuka dengan menjalankan script soal 3d dan dijalankan pada menit 0, pada jam 7 pagi, pada hari pertama hingga hari kelima dalam minggu (senin - jumat), pada setiap bulan
 
+Cron kedua akan melakukan unzip pada file zip Koleksi.zip, namun sebelum itu cron perlu diarahkan menuju folder yang mengadung file Koleksi.zip menggunakan `cd {PATH}`, setelah di unzip, file akan dihapus menggunakan `rm`. Command ini akan dijalankan pada menit 0, jam 18 (6 malam), pada hari pertama hingga hari kelima dalam minggu (senin-jumat), pada setiap bulan
