@@ -145,7 +145,7 @@ Variabel `error` dan `info` digunakan untuk mengambil line yang beris error dan 
 
 - - - -
 
-## NO 2
+## NO 2 : TokoShiSop
 Pada pengerjaan soal no 2 ini, dibutuhkan data TokoShiSop. Sehingga dilakukan input file data tersebut yaitu "Laporan-TokoShiSop.tsv"
 ```bash
 export LC_ALL=C
@@ -171,11 +171,11 @@ BEGIN{ max=0;idmax=0}
 }
 END
 ```
-- Proses akan dilakukan ketika Baris != 1
-- Presentase profit didapatkan dengan membagi kolom profit dengan pengurangan sales dengan profit, kemudian dikalikan dengan 100
+- Proses akan dilakukan ketika Baris != 1 `NR!=1`
+- Presentase profit didapatkan dengan membagi kolom profit `$21` dengan pengurangan sales dengan profit `$18-$21`, kemudian dikalikan dengan 100
 - Id dimulai dari angka 1
 - Lalu dilakukan pengecekan untuk mendapatkan profit maksimal sampai semua data yang ada selesai dicek dengan cara setiap pengecekan apakah presentase profit lebih besar dari
-  profit terbesar sekarang. Jika iya maka profit terbesar akan diubah beserta idnya, dengan inisialisasi awal profit terbesar dan id adalah 0. 
+  profit terbesar sekarang. Jika iya maka profit terbesar `max` akan diubah beserta idnya `idmax`, dengan inisialisasi awal profit terbesar dan id adalah 0. 
 
 - - - -
 
@@ -195,8 +195,8 @@ BEGIN{printf "Daftar nama customer di Albuquerque pada tahun 2017 antara lain: \
 }
 END
 ```
-- Proses akan dilakukan ketika Baris != 1
-- Dilakukan pengecekan apakah kolom 10 atau _city_ adalah Alburquerque dan kolom 3 atau_ date _ adalah pada tahun 2017, maka _customer name_ akan disimpan ke dalam array
+- Proses akan dilakukan ketika Baris != 1 `NR!=1`
+- Dilakukan pengecekan apakah `$10` _city_ adalah Alburquerque dan `$3` _date_ adalah pada tahun 2017, maka _customer name_ akan disimpan ke dalam array `a[$7]`
 
 - - - -
 
@@ -220,8 +220,8 @@ BEGIN{consumer=0;homeoffice=0;corp=0}
 }
 END
 ```
-- Proses akan dilakukan ketika Baris != 1
-- Dilakukan pengecekan apakah kolom 8 atau _segmen_ adalah "Consumer" bukan. Jika iya maka akan dilakukan penjumlahan variabel consumer dimana variabel tersebut berguna untuk menyimpan jumlah _segmen_ yang bertipe Customer pada data Laporan-TokoShiSop.tsv
+- Proses akan dilakukan ketika Baris != 1 `NR!=1`
+- Dilakukan pengecekan apakah `$8` _segmen_ adalah "Consumer" bukan. Jika iya maka akan dilakukan penjumlahan variabel consumer `consumer++` dimana variabel tersebut berguna untuk menyimpan jumlah _segmen_ yang bertipe Customer pada data Laporan-TokoShiSop.tsv
 - Pengecekan yang sama juga dilakukan untuk _segmen_ bertipe Home Office dan Corporate
 
 - - - -
@@ -260,9 +260,9 @@ END{
 }
 ' "$input" >> hasil.txt
 ```
-- Proses akan dilakukan ketika Baris != 1
-- Menyimpan total profit dari setiap region dengan menggunakan array yang memiliki index region dan valuenya adalah jumlah dari profit
-- Setelah semua data selesai di proses, dilanjutkan dengan pencarian total profit yang paling sedikit. Pertama diinisialisasi bahwa yang terkecil adalah region paling awal. Lalu ketika dilakukan pengecekan untuk region selanjutnya, profitnya lebih kecil dari yang sekarang maka profit terkecilnya beserta regionnya akan diganti. Proses tersebut dilakukan sampai semua region telah dicek.
+- Proses akan dilakukan ketika Baris != 1 `NR!=1`
+- Menyimpan total profit `$21` dari setiap region dengan menggunakan array yang memiliki index region dan valuenya adalah jumlah dari profit `arr[$13]`
+- Setelah semua data selesai di proses, dilanjutkan dengan pencarian total profit yang paling sedikit. Pertama diinisialisasi bahwa yang terkecil adalah region paling awal. Lalu ketika dilakukan pengecekan untuk region selanjutnya, profitnya lebih kecil dari yang sekarang maka profit terkecilnya `min` beserta regionnya `regionmin` akan diganti. Proses tersebut dilakukan sampai semua region telah dicek.
 
 - - - -
 
@@ -272,7 +272,7 @@ Membuat sebuah script yang akan menghasilkan file “hasil.txt”
 {printf "Transaksi terakhir dengan profit percentage terbesar yaitu %d dengan persentase  %.2f%%.\n\n", idmax, max}
 ' "$input" >> hasil.txt
 ```
-Menyimpan id dan persentase profit terbesar ke dalam file "hasil.txt"
+Menyimpan id `idmax` dan persentase profit terbesar `max` ke dalam file "hasil.txt"
 
 ```
 { for(b in a){ print b} {printf "\n"}}
@@ -300,7 +300,7 @@ Data jumlah Segmen bertipe Customer, Home Ofiice, dan Corperate yang didapatkan 
 }
 ' "$input" >> hasil.txt
 ```
-Menyimpan wilayah dengan total profit paling sedikit beserta total profitnya ke dalam file "hasil.txt"
+Menyimpan wilayah dengan total profit paling sedikit `regionmin` beserta total profitnya `arr[regionmin]` ke dalam file "hasil.txt"
 
 - - - -
 
