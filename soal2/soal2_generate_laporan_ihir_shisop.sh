@@ -87,7 +87,7 @@ BEGIN{}
 #	}
 }
 END{
-	a=0;
+	a=1;
 	{for(i in arr)
 		{
 			{if(a==1)
@@ -97,13 +97,12 @@ END{
 				}
 			}
 			
-			{if(a < min)
+			{if(arr[i] < min)
 				{
 					min=arr[i]
 					regionmin=i
 				}
 			}
-			a++
 		}
 	}
 	{printf "Wilayah bagian (region) yang memiliki total keuntungan (profit) yang paling sedikit adalah %s dengan total keuntungan %.2f\n",regionmin, arr[regionmin]}
