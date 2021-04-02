@@ -527,4 +527,11 @@ Zip akan terbuka dengan menjalankan script soal 3d dan dijalankan pada menit 0, 
 
 Cron kedua akan melakukan unzip pada file zip Koleksi.zip, namun sebelum itu cron perlu diarahkan menuju folder yang mengadung file Koleksi.zip menggunakan `cd {PATH}`, setelah di unzip, file akan dihapus menggunakan `rm`. Command ini akan dijalankan pada menit 0, jam 18 (6 malam), pada hari pertama hingga hari kelima dalam minggu (senin-jumat), pada setiap bulan
 
+#### Revisi 3e
+Terdapat kesalahan pada kode yang sebelumnya kami kumpulkan. Kesalahan tersebut terletak pada kurangnya path pada cron pertama dan pada command `cd` di cron kedua. Berikut adalah hasil revisinya :
+```bash
+0 7 * * 1-5 cd /home/zaki/Documents/Sisop Shift/Shift1/soal3/ && bash soal3d.sh
+0 18 * * 1-5 cd /home/zaki/Documents/Sisop Shift/Shift1/soal3/ && unzip -P $( date +"\%m\%d\%Y" ) "Koleksi.zip" && rm "Koleksi.zip"
+```
+
 - - - -
