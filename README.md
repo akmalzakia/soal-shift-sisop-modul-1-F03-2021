@@ -143,6 +143,13 @@ done >> "user_statistic.csv"
 ```
 Variabel `error` dan `info` digunakan untuk mengambil line yang beris error dan info dari input. Lalu setiap line dari variabel `sorteduserlog` diprint dan dicari kemunculan user pada line yang dibaca saat itu pada variabel `error` dan `info` dan kemudian diprint. Setelah selesai diprint, output dimasukkan ke user_statistic.csv
 
+### Output
+#### error_message.csv
+![error_message.csv](../img/errormessage.png)
+
+#### user_statistic.csv
+![user_statistic.csv](../img/user_statistic.png)
+
 - - - -
 
 ## NO 2 : TokoShiSop
