@@ -145,10 +145,10 @@ Variabel `error` dan `info` digunakan untuk mengambil line yang beris error dan 
 
 ### Output
 #### error_message.csv
-![error_message.csv](../img/errormessage.png)
+![error_message.csv](/img/errormessage.png)
 
 #### user_statistic.csv
-![user_statistic.csv](../img/user_statistic.png)
+![user_statistic.csv](/img/user_statistic.png)
 
 - - - -
 
