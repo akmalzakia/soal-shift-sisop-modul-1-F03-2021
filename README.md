@@ -150,6 +150,13 @@ Variabel `error` dan `info` digunakan untuk mengambil line yang beris error dan 
 #### user_statistic.csv
 ![user_statistic.csv](/img/user_statistic.png)
 
+
+### Problems
+
+Terdapat beberapa kendala ketika kami mengerjakan soal nomor 1 ini. Beberapa diantaranya adalah kesulitan ketika mencari regex yang tepat untuk memfilter dan kesulitan ketika mencari cara untuk menampilkan output sesuai format dalam soal. Sebelum sampai dengan jawaban yang telah kami kumpulkan, kami sempat mencoba untuk memformat output dengan menyimpan jumlah error setiap pesan log pada suatu array dan nantinya akan diprint bersamaan dengan hasil filter setiap pesan log menggunakan regex, namun cara ini tidak berhasil karena variabel yang digunakan untuk menyimpan jumlah error dan info setiap user berada dalam pipe, sedangkan variabel yang berada didalam pipe tidak bisa diakses dari luar pipe.
+
+![Problem_1](/img/err1.png)
+
 - - - -
 
 ## NO 2 : TokoShiSop
