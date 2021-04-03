@@ -466,8 +466,26 @@ do
     fi
 done
 ```
+```bash
+cachefile=($(awk 'BEGIN{n=0}{if (NR - n == 6){n +=15; {print $3}}}' Foto.log))
+cachefilesize=(${#cachefile[@]})
+```
+Untuk mengecek perbedaan gambar, dapat dicek di dalam Foto.log. Perbedaan setiap gambar dapat diliat pada line ke 6 pada setiap log download. Karena setiap log download berisi 15 line. Maka untuk mengambil line ke 6 pada setiap log dapat diambil dengan cara mengambil line ke 6,21,36,.. n pada code diatas berfungsi sebagai counter line dimulainya log dari file yang didownload, apabila yang didownload adalah file pertama maka log dimulai setelah line 0, apabila file kedua maka log dimulai setelah line 15. Untuk mengambil line ke 6 setiap log, maka kita bisa mengurangkan line yang dibaca oleh awk dengan n. Lalu untuk mengambil string yang berbeda pada setiap file yaitu 'https://loremflickr.com/cache/resized/.....' dapat digunakan `$3` karena string tersebut berada pada kolom ke 3. List dari string yang berisi perbedaan setiap gambar dimasukkan pada array cachefile. Lalu size dari cachefile disimpan pada variabel cachefilesize
 
-
+```bash
+for(( j=0 ; j < $cachefilesize - 1; j++))
+do
+    if [ "${cachefile[j]}" == "${cachefile[$(($cachefilesize - 1))]}" ]
+    then
+        # echo "hapus"
+        rm "Koleksi_$j"
+        (( i-- ))
+        (( size-- ))
+        break
+    fi
+done
+```
+Setiap line pada cachefile dicocokkan dengan log terakhir dari file yang telah didownload, apabila string pembeda dari log terakhir ternyata sudah ada dalam array, hapus file yang terakhir didownload
 - - - -
 
 ### 3b 
