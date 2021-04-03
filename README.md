@@ -448,6 +448,26 @@ if [[ i -lt 10 ]]
 untuk mengganti nama file dari `koleksi_$i` menjadi `Koleksi_0$i` di tambahkan dengan 0 didalamnya karena satuan yang dimulai dari `i -lt 10`.
 untuk mengganti nama file sendiri menggunakan command `mv`.
 
+#### Revisi 3a
+Terdapat kesalahan pada pengerjaan 3a kami sebelumnya karena tidak menggunakan AWK. Oleh karena itu, kami mencoba merubah cara compare dan delete folder dulplikat kami menggunakan bantuan AWK dengan cara berikut
+```bash
+cachefile=($(awk 'BEGIN{n=0}{if (NR - n == 6){n +=15; {print $3}}}' Foto.log))
+cachefilesize=(${#cachefile[@]})
+ 
+for(( j=0 ; j < $cachefilesize - 1; j++))
+do
+    if [ "${cachefile[j]}" == "${cachefile[$(($cachefilesize - 1))]}" ]
+    then
+        # echo "hapus"
+        rm "Koleksi_$j"
+        (( i-- ))
+        (( size-- ))
+        break
+    fi
+done
+```
+
+
 - - - -
 
 ### 3b 

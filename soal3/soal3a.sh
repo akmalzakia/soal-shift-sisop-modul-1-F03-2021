@@ -25,6 +25,22 @@ do
 		fi
 	done
 
+	#Pakai AWK
+	# cachefile=($(awk 'BEGIN{n=0}{if (NR - n == 6){n +=15; {print $3}}}' Foto.log))
+	# cachefilesize=(${#cachefile[@]})
+
+	# for(( j=0 ; j < $cachefilesize - 1; j++))
+	# do
+	# 	if [ "${cachefile[j]}" == "${cachefile[$(($cachefilesize - 1))]}" ]
+	# 	then
+	# 		# echo "hapus"
+	# 		rm "Koleksi_$j"
+	# 		(( i-- ))
+	# 		(( size-- ))
+	# 		break
+	# 	fi
+	# done
+
 	if [[ i -lt 10 ]]
 	then
 		mv "Koleksi_$i" "Koleksi_0$i"
