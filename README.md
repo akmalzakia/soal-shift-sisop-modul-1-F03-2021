@@ -290,12 +290,12 @@ END{
 - Setelah semua data selesai di proses, dilanjutkan dengan pencarian total profit yang paling sedikit. Pertama diinisialisasi bahwa yang terkecil adalah region paling awal. Lalu ketika dilakukan pengecekan untuk region selanjutnya, apabila profitnya lebih kecil dari yang sekarang maka profit terkecilnya `min` beserta regionnya `regionmin` akan diganti. Proses tersebut dilakukan sampai semua region telah dicek.
 
 ### Revisi 2d
-Terdapat kesalahan pada kode yang sebelumnya kami kumpulkan. Kesalahan tersebut terletak pada pengecekan setelah END yaitu `if(a==1)` dan `if(a < min)` serta tidak perlunya a++. Berikut adalah hasil revisinya :
+Terdapat kesalahan pada kode yang sebelumnya kami kumpulkan. Kesalahan tersebut terletak pada pengecekan setelah END yaitu `a=0` dan `if(a < min)` serta tidak perlunya a++. Berikut adalah hasil revisinya :
 ```
-a=0;
+a=1;
 	{for(i in arr)
 		{
-			{if(a==0)
+			{if(a==1)
 				{
 					min=arr[i]
 					regionmin=i
@@ -349,6 +349,12 @@ Data jumlah Segmen bertipe Customer, Home Ofiice, dan Corperate yang didapatkan 
 ' "$input" >> hasil.txt
 ```
 Menyimpan wilayah dengan total profit paling sedikit `regionmin` beserta total profitnya `arr[regionmin]` ke dalam file "hasil.txt"
+
+- - - -
+
+### Output
+#### hasil.txt
+![hasil.txt](/img/hasil.png)
 
 - - - -
 
