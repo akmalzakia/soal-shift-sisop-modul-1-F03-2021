@@ -165,6 +165,17 @@ Pada pengerjaan soal no 2 ini, dibutuhkan data TokoShiSop. Sehingga dilakukan in
 export LC_ALL=C
 input="/home/zaki/Downloads/Laporan-TokoShiSop.tsv"
 ```
+Selain itu, pada setiap pengerjaan no 2a-2d menggunakan awk.
+```
+awk -F "\t" '
+BEGIN 
+{
+
+}
+END
+```
+- `awk -F "\t"` digunakan untuk mengaktifkan awk, dan `-F "\t"` digunakan karena file berupa tsv dimana field separator menggunakan tab/"\t".
+- `BEGIN` digunakan untuk memulai awk dan akan dimulai membaca dan menjalankan perintah yang ada di dalamnya setiap barisnya hingga sampai semua selesai ditutup dengan `END`.
 
 ### 2a 
 Steven ingin mengetahui Row ID dan profit percentage terbesar
@@ -276,7 +287,30 @@ END{
 ```
 - Proses akan dilakukan ketika Baris != 1 `NR!=1`
 - Menyimpan total profit `$21` dari setiap region dengan menggunakan array yang memiliki index region dan valuenya adalah jumlah dari profit `arr[$13]`
-- Setelah semua data selesai di proses, dilanjutkan dengan pencarian total profit yang paling sedikit. Pertama diinisialisasi bahwa yang terkecil adalah region paling awal. Lalu ketika dilakukan pengecekan untuk region selanjutnya, profitnya lebih kecil dari yang sekarang maka profit terkecilnya `min` beserta regionnya `regionmin` akan diganti. Proses tersebut dilakukan sampai semua region telah dicek.
+- Setelah semua data selesai di proses, dilanjutkan dengan pencarian total profit yang paling sedikit. Pertama diinisialisasi bahwa yang terkecil adalah region paling awal. Lalu ketika dilakukan pengecekan untuk region selanjutnya, apabila profitnya lebih kecil dari yang sekarang maka profit terkecilnya `min` beserta regionnya `regionmin` akan diganti. Proses tersebut dilakukan sampai semua region telah dicek.
+
+### Revisi 2d
+Terdapat kesalahan pada kode yang sebelumnya kami kumpulkan. Kesalahan tersebut terletak pada pengecekan setelah END yaitu `if(a==1)` dan `if(a < min)` serta tidak perlunya a++. Berikut adalah hasil revisinya :
+```
+a=0;
+	{for(i in arr)
+		{
+			{if(a==0)
+				{
+					min=arr[i]
+					regionmin=i
+				}
+			}
+			
+			{if(arr[i] < min)
+				{
+					min=arr[i]
+					regionmin=i
+				}
+			}
+		}
+	}
+```
 
 - - - -
 
