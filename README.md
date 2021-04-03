@@ -357,7 +357,7 @@ Menyimpan wilayah dengan total profit paling sedikit `regionmin` beserta total p
 ![hasil.txt](/img/hasil.png)
 
 
-### Promblems
+### Problems
 
 Terdapat beberapa kendala ketika kami mengerjakan soal nomor 2 ini. Kebanyakan dalam kendala kami ini adalah karena kesalahan dalam penulisan. Beberapa diantaranya adalah kurang dalam penulisan tanda kurung tutup. Selain itu, kesalahan dalam pemilihan simbol yang digunakan sebagai pembanding sehingga, hasilnya tidak dapat keluar. Dan juga, terdapat kesalahan kami dalam penulisan variabel seperti `Customer` dan `Corporation`. Kendala laiinnya adalah kesalahan dalam penginisialisasian variabel dan cara mendapatkan serta pengecekan data yang diminta dalam soal yaitu ketika kita langsung membandingkan `profit` dari setiap baris tidak mengelompokkan dahulu ke dalam setiap `region`. 
 
