@@ -574,4 +574,17 @@ Terdapat kesalahan pada kode yang sebelumnya kami kumpulkan. Kesalahan tersebut 
 0 18 * * 1-5 cd /home/zaki/Documents/Sisop Shift/Shift1/soal3/ && unzip -P $( date +"\%m\%d\%Y" ) "Koleksi.zip" && rm "Koleksi.zip"
 ```
 
+### Problems
+### 3a
+Kesalahan untuk nomer 3a yaitu masih belum menemukan cara untuk membandingkan gambar yang sama dan ketika terdapat gambar yang sama harus di hapus. Jika dilihat gambar di bawah akan terlihat ada duplicate gambar di koleksi_17 dan koleksi_19. Dan aslinya ada banyak kesalahan-kesalahan yang di dapatkan ketika mencoba nomer 3a ini namun yang terdokumentasi hanya ada untuk yang ini saja.
+
+![Problem_3](/img/3a/3a%20syntax.jpeg)
+![Problem_3](/img/3a/3a%20hasil.jpeg)
+
+### 3d
+Kesalahan untuk nomer 3d ketika mengerjakan yaitu menganggap bahwa file atau folder yang akan di zip nantinya hanya soal yang nomer 3a saja, ternyata semua file dan folder termasuk 3c juga dimasukkan, dan syntax yang salah adalah ketika saya hanya menandakan `.\koleksi*`.
+
+![Problem_3](/img/3d/3d%20syntax.jpeg)
+![Problem_3](/img/3d/3d%20hasil.jpeg)
+
 - - - -
