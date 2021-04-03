@@ -515,6 +515,11 @@ Script dari 3a akan dijalankan dan hasil download langsung dipindahkan menuju su
 ```
 script dijalankan ketika menit ke 0, pada jam 20 ( 8 malam ), mulai dari tanggal 1 hingga tanggal 31 setiap 7 hari dan mulai dari tanggal 2 hinggal tanggal 31 setiap 4 hari, pada setiap bulan.
 
+
+
+#### Output
+![3b](/img/3b.png)
+![3b2](/img/3b-2.png)
 - - - -
 
 ### 3c
@@ -579,6 +584,11 @@ else [[ $kucingcount -ne $kelincicount ]]
     kucing
 fi
 ```
+
+#### Output
+![3c](/img/3c.png)
+![3c2](/img/3c-2.png)
+
 - - - -
 
 ### 3d
@@ -602,6 +612,8 @@ zip -P $pass -mr Koleksi.zip $filess
 zip -P akan mengunci zip menggunakan variabel `pass`
 zip -m akan melakukan zip dengan memindahkan file sehingga setelah zip selesai dilakukan, folder atau file yang di zip hilang
 zip -r akan melakukan zip secara rekursi sehingga file yang berada dalam folder juga ikut di zip
+
+![3d](/img/3d.png)
 
 - - - -
 
